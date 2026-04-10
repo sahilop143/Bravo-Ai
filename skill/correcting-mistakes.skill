@@ -17,8 +17,8 @@ Trigger this skill when:
 
 Find the relevant file that needs correction.
 
-- Skills: `.claude/skills/{skill-name}/SKILL.md` or related reference files.
-- Commands: `.claude/commands/{command-name}.md`.
+- Skills: `.claude/skills/{skill-name}/SKILL.md`, `skill/{skill-name}.skill`, or related reference files.
+- Commands: `.claude/commands/{command-name}.md` or project command instruction files.
 
 Read the file to understand the current instructions.
 
