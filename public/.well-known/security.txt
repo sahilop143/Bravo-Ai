@@ -1,0 +1,6 @@
+Contact: security@bravo.ai
+Expires: 2027-04-10T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://bravo.ai/.well-known/security.txt
+Policy: https://bravo.ai/security-policy
+Acknowledgments: https://bravo.ai/security-acknowledgments 

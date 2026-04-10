@@ -1,6 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import DOMPurify from 'dompurify';
+
+// Allowed social media platforms (whitelist)
+const ALLOWED_SOCIAL_NAMES = ['Twitter', 'GitHub', 'Discord'];
 
 export default function SocialPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,7 +14,21 @@ export default function SocialPopup() {
   useEffect(() => {
     const handleSocialClick = (e: CustomEvent) => {
       e.preventDefault();
-      setSocialName(e.detail);
+      const name = e.detail;
+
+      // Validate against whitelist
+      if (!ALLOWED_SOCIAL_NAMES.includes(name)) {
+        console.warn(`Invalid social name: ${name}`);
+        return;
+      }
+
+      // Sanitize input (defense in depth)
+      const sanitizedName = DOMPurify.sanitize(name, { 
+        ALLOWED_TAGS: [],
+        ALLOWED_ATTR: []
+      });
+
+      setSocialName(sanitizedName);
       setIsVisible(true);
 
       // Clear any existing timeout before setting a new one
