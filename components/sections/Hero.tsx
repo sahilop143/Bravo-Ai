@@ -42,6 +42,7 @@ function useCountUp(target: number, suffix: string = '', duration: number = 2000
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState('T');
+  const [typingDone, setTypingDone] = useState(false);
   const fullText = 'The Open Marketplace for AI Agents and Skills';
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function Hero() {
         index++;
       } else {
         clearInterval(interval);
+        setTypingDone(true);
       }
     }, 28);
 
@@ -72,7 +74,7 @@ export default function Hero() {
               <span>Building the Future of AI</span>
             </div>
 
-            <h1 className="hero-title">{displayedText}</h1>
+            <h1 className="hero-title">{displayedText}<span className={`hero-cursor ${typingDone ? 'blink' : ''}`}>|</span></h1>
 
             <p className="hero-lead">
               Where creators publish and users discover trusted AI tools. Open platform. Creator-first.

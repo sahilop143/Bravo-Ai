@@ -17,7 +17,7 @@ function initScrollReveal() {
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.08, rootMargin: '0px 0px -20px 0px' }
   );
 
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
@@ -38,24 +38,24 @@ function initButtonInteractions() {
     const ripple = document.createElement('span');
     ripple.style.cssText = `
       position: absolute;
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.18);
       border-radius: 50%;
       transform: scale(0);
-      animation: ripple 0.55s linear;
+      animation: ripple 0.5s linear;
       pointer-events: none;
       left: ${x}px;
       top: ${y}px;
-      width: 100px;
-      height: 100px;
-      margin-left: -50px;
-      margin-top: -50px;
+      width: 80px;
+      height: 80px;
+      margin-left: -40px;
+      margin-top: -40px;
     `;
 
     btn.style.position = 'relative';
     btn.style.overflow = 'hidden';
     btn.appendChild(ripple);
 
-    setTimeout(() => ripple.remove(), 600);
+    setTimeout(() => ripple.remove(), 550);
   });
 }
 
