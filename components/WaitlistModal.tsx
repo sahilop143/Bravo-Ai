@@ -94,6 +94,10 @@ export default function WaitlistModal() {
         <div className="waitlist-modal-content" onClick={e => e.stopPropagation()}>
           <button className="modal-close" onClick={handleClose}>×</button>
 
+          {/* Techy corner accents */}
+          <div className="modal-corner-tl"></div>
+          <div className="modal-corner-br"></div>
+
           {!showSuccess ? (
             <>
               <div className="modal-header">
@@ -102,6 +106,9 @@ export default function WaitlistModal() {
                   Be among the first to access Bravo.Ai marketplace
                 </p>
               </div>
+
+              {/* Animated grid background */}
+              <div className="modal-grid-bg"></div>
 
               <form onSubmit={handleSubmit} className="waitlist-form">
                 <div className="form-group">
@@ -169,8 +176,12 @@ export default function WaitlistModal() {
             </>
           ) : (
             <div className="success-message show">
-              <div className="success-icon">✓</div>
-              <h3 >Welcome aboard!</h3>
+              <div className="success-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+              <h3>Welcome aboard!</h3>
               <p>Check your email for updates</p>
             </div>
           )}

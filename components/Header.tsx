@@ -31,7 +31,7 @@ export default function Header() {
         </nav>
         <div className="header-actions">
           <button className="btn-ghost">Sign In</button>
-          <button className="btn-primary">Get Started</button>
+          <button className="btn-primary" data-action="open-waitlist">Join Waitlist</button>
         </div>
       </div>
     </header>

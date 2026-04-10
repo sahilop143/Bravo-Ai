@@ -38,10 +38,10 @@ function initButtonInteractions() {
     const ripple = document.createElement('span');
     ripple.style.cssText = `
       position: absolute;
-      background: rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.4) 0%, rgba(138, 43, 226, 0.2) 100%);
       border-radius: 50%;
       transform: scale(0);
-      animation: ripple 0.5s linear;
+      animation: rippleTech 0.6s linear;
       pointer-events: none;
       left: ${x}px;
       top: ${y}px;
@@ -55,7 +55,7 @@ function initButtonInteractions() {
     btn.style.overflow = 'hidden';
     btn.appendChild(ripple);
 
-    setTimeout(() => ripple.remove(), 550);
+    setTimeout(() => ripple.remove(), 650);
   });
 }
 

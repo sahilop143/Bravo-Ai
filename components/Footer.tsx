@@ -38,11 +38,10 @@ export default function Footer() {
           </div>
 
           <div className="footer-section">
-            <h4>Platform</h4>
+            <h4>Get Started</h4>
             <ul className="footer-links">
-              <li><button onClick={() => scrollToSection('agents')} className="footer-link-btn">Agents</button></li>
-              <li><button onClick={() => scrollToSection('skills')} className="footer-link-btn">Skills</button></li>
-              <li><button onClick={() => scrollToSection('pricing')} className="footer-link-btn">Pricing</button></li>
+              <li><button onClick={() => window.dispatchEvent(new CustomEvent('openWaitlistModal'))} className="footer-link-btn">Join Waitlist</button></li>
+              <li><button onClick={() => scrollToSection('agents')} className="footer-link-btn">Learn More</button></li>
             </ul>
           </div>
 
