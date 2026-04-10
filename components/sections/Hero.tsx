@@ -49,23 +49,6 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="hero-stats">
-              <div className="stat">
-                <span className="stat-value">100%</span>
-                <span className="stat-label">Open Source</span>
-              </div>
-              <div className="stat-divider"></div>
-              <div className="stat">
-                <span className="stat-value">Free</span>
-                <span className="stat-label">Phase 1</span>
-              </div>
-              <div className="stat-divider"></div>
-              <div className="stat">
-                <span className="stat-value">0%</span>
-                <span className="stat-label">Platform Fee</span>
-              </div>
-            </div>
-
             <div className="scroll-indicator">
               <svg className="scroll-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="6 9 12 15 18 9"></polyline>

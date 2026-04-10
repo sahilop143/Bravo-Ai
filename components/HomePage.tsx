@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import Header from './Header';
 import Hero from './sections/Hero';
 import Showcase from './sections/Showcase';
-import HowItWorks from './sections/HowItWorks';
 import FeatureStrip from './sections/FeatureStrip';
 import CTA from './sections/CTA';
 import Footer from './Footer';
@@ -24,7 +23,6 @@ export default function HomePage() {
       <main>
         <Hero />
         <Showcase />
-        <HowItWorks />
         <FeatureStrip />
         <CTA />
       </main>
