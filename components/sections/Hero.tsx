@@ -38,7 +38,9 @@ export default function Hero() {
             </p>
 
             <div className="hero-cta">
-              <button className="btn-primary btn-lg">Coming Soon</button>
+              <button type="button" className="btn-primary btn-lg" disabled>
+                Coming Soon
+              </button>
               <button className="btn-ghost btn-lg" data-action="open-waitlist">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>

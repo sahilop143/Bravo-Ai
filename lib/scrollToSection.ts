@@ -1,27 +1,50 @@
 /**
  * Smoothly scroll to a section by ID without showing hash in URL
- * If on a different page, navigate to home first then scroll
+ * If on a different page, navigate home and restore the target scroll on load
  */
+const PENDING_SCROLL_SECTION_KEY = 'bravo-ai:pending-scroll-section';
+
+export const consumePendingScrollSection = (): string | null => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  try {
+    const sectionId = window.sessionStorage.getItem(PENDING_SCROLL_SECTION_KEY);
+
+    if (!sectionId) {
+      return null;
+    }
+
+    window.sessionStorage.removeItem(PENDING_SCROLL_SECTION_KEY);
+    return sectionId;
+  } catch {
+    return null;
+  }
+};
+
 export const scrollToSection = (sectionId: string) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   const element = document.getElementById(sectionId);
 
-  // Check if the target section exists on current page
   if (element) {
-    // We're on the same page with the section, scroll directly
     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } else {
-    // Section doesn't exist on current page, navigate to home first
-    // Use replace so no extra history entry is created
-    window.location.replace('/');
-
-    // After navigation completes, scroll to section
-    // This will work because home page has all sections
-    setTimeout(() => {
-      const elementRef = document.getElementById(sectionId);
-      if (elementRef) {
-        elementRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
+    return;
   }
+
+  if (window.location.pathname === '/') {
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem(PENDING_SCROLL_SECTION_KEY, sectionId);
+  } catch {
+    // Ignore storage failures and fall back to the home navigation only.
+  }
+
+  window.location.replace('/');
 };
 

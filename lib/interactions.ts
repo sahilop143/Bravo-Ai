@@ -16,20 +16,26 @@ export const EVENT_TYPES = {
 /**
  * Initialize scroll reveal animations
  */
+let revealObserver: IntersectionObserver | null = null;
+
 export function initScrollReveal() {
-  const observer = new IntersectionObserver(
+  if (revealObserver) {
+    revealObserver.disconnect();
+  }
+
+  revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          revealObserver?.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
   );
 
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach((el) => revealObserver?.observe(el));
 }
 
 /**
@@ -110,42 +116,21 @@ function initWaitlistButtonHandler() {
   };
 }
 
-// Social popup cleanup
-let socialCleanup: (() => void) | null = null;
-
 /**
- * Initialize social popup event handler
- */
-function initSocialPopupHandler() {
-  // Remove existing listener if any
-  if (socialCleanup) {
-    socialCleanup();
-  }
-
-  const handleSocialClick = (e: CustomEvent) => {
-    window.dispatchEvent(new CustomEvent(EVENT_TYPES.OPEN_SOCIAL, { detail: e.detail }));
-  };
-
-  window.addEventListener('openSocialPopup', handleSocialClick as EventListener);
-
-  // Return cleanup function
-  socialCleanup = () => {
-    window.removeEventListener('openSocialPopup', handleSocialClick as EventListener);
-  };
-}
-
-/**
- * Initialize all interactions (scroll reveal, buttons, waitlist, social)
+ * Initialize all interactions (scroll reveal, buttons, waitlist)
  */
 export function initInteractions() {
   initScrollReveal();
   initButtonInteractions();
   initWaitlistButtonHandler();
-  initSocialPopupHandler();
 }
 
 // Export cleanup function for app unmount
 export function cleanupInteractions() {
+  if (revealObserver) {
+    revealObserver.disconnect();
+    revealObserver = null;
+  }
   if (rippleCleanup) {
     rippleCleanup();
     rippleCleanup = null;
@@ -154,11 +139,4 @@ export function cleanupInteractions() {
     waitlistCleanup();
     waitlistCleanup = null;
   }
-  if (socialCleanup) {
-    socialCleanup();
-    socialCleanup = null;
-  }
 }
-
-// Re-export for convenience
-export { initSocialPopupHandler };

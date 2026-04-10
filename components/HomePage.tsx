@@ -9,15 +9,14 @@ import CTA from './sections/CTA';
 import Footer from './Footer';
 import WaitlistModal from './WaitlistModal';
 import BackgroundAnimation from './BackgroundAnimation';
-import { initInteractions, initSocialPopupHandler } from '@/lib/interactions';
+import { cleanupInteractions, initInteractions } from '@/lib/interactions';
 
 export default function HomePage() {
   useEffect(() => {
     initInteractions();
-    initSocialPopupHandler();
+
     return () => {
-      // Cleanup on unmount
-      // Note: cleanupInteractions would need to be called if we tracked all handlers
+      cleanupInteractions();
     };
   }, []);
 

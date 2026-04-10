@@ -466,6 +466,30 @@ select {
   transition-duration: 80ms;
 }
 
+.btn-primary:disabled,
+.btn-ghost:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary:disabled::before,
+.btn-ghost:disabled::before,
+.btn-primary:disabled::after,
+.btn-ghost:disabled::after {
+  opacity: 0;
+  animation: none;
+}
+
+.btn-primary:disabled:hover,
+.btn-ghost:disabled:hover,
+.btn-primary:disabled:active,
+.btn-ghost:disabled:active {
+  transform: none;
+  box-shadow: none;
+}
+
 .btn-ghost {
   color: var(--text);
   padding: 9px 18px;

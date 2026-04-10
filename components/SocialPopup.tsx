@@ -1,28 +1,42 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function SocialPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [socialName, setSocialName] = useState('');
+  const closeTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleSocialClick = (e: CustomEvent) => {
-      e.preventDefault();
-      setSocialName(e.detail);
-      setIsVisible(true);
+    const clearCloseTimeout = () => {
+      if (closeTimeoutRef.current !== null) {
+        window.clearTimeout(closeTimeoutRef.current);
+        closeTimeoutRef.current = null;
+      }
+    };
 
-      // Auto-close after 2.5 seconds
-      setTimeout(() => setIsVisible(false), 2500);
+    const handleSocialClick = (event: Event) => {
+      const customEvent = event as CustomEvent<string>;
+
+      clearCloseTimeout();
+      setSocialName(customEvent.detail);
+      setIsVisible(true);
+      closeTimeoutRef.current = window.setTimeout(() => {
+        setIsVisible(false);
+        closeTimeoutRef.current = null;
+      }, 2500);
     };
 
     window.addEventListener('openSocialPopup', handleSocialClick as EventListener);
-    return () => window.removeEventListener('openSocialPopup', handleSocialClick as EventListener);
+    return () => {
+      clearCloseTimeout();
+      window.removeEventListener('openSocialPopup', handleSocialClick as EventListener);
+    };
   }, []);
 
   return isVisible ? (
     <div className="social-popup-overlay" onClick={() => setIsVisible(false)}>
-      <div className="social-popup-content">
+      <div className="social-popup-content" onClick={(event) => event.stopPropagation()}>
         <div className="social-popup-text">
           <span className="social-popup-label">{socialName}</span>
           <span className="social-popup-message">Coming soon</span>
