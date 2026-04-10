@@ -47,14 +47,6 @@ export default function Footer() {
           </div>
 
           <div className="footer-section">
-            <h4>Resources</h4>
-            <ul className="footer-links">
-              <li><Link href="/documentation">Documentation</Link></li>
-              <li><Link href="/creator-guide">Creator Guide</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-section">
             <h4>Community</h4>
             <ul className="footer-links">
               <li><a href="#discord">Discord</a></li>

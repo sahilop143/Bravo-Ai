@@ -48,6 +48,7 @@ export default function Showcase() {
         <div className="values-grid">
           {values.map((value, index) => (
             <div key={index} className={`value-card reveal-delay-${index + 1}`}>
+              <div className="card-shimmer" aria-hidden="true"></div>
               <div className="value-icon">{value.icon}</div>
               <h3>{value.title}</h3>
               <p>{value.description}</p>

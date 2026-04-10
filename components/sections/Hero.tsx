@@ -1,6 +1,44 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+function useCountUp(target: number, suffix: string = '', duration: number = 2000) {
+  const [value, setValue] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+          const startTime = performance.now();
+          const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease-out cubic for smooth deceleration
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setValue(Math.round(eased * target));
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+          requestAnimationFrame(animate);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, duration, hasStarted]);
+
+  return { value, ref, suffix };
+}
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState('T');
@@ -19,6 +57,10 @@ export default function Hero() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const stat1 = useCountUp(10, 'K+');
+  const stat2 = useCountUp(500, '+');
+  const stat3 = useCountUp(99, '.9%');
 
   return (
     <section id="home" className="hero">
@@ -47,6 +89,23 @@ export default function Hero() {
                 </svg>
                 Join Waitlist
               </button>
+            </div>
+
+            <div className="hero-stats">
+              <div className="stat" ref={stat1.ref}>
+                <span className="stat-value">{stat1.value}{stat1.suffix}</span>
+                <span className="stat-label">AI Agents</span>
+              </div>
+              <div className="stat-divider"></div>
+              <div className="stat" ref={stat2.ref}>
+                <span className="stat-value">{stat2.value}{stat2.suffix}</span>
+                <span className="stat-label">Creators</span>
+              </div>
+              <div className="stat-divider"></div>
+              <div className="stat" ref={stat3.ref}>
+                <span className="stat-value">{stat3.value}{stat3.suffix}</span>
+                <span className="stat-label">Uptime</span>
+              </div>
             </div>
 
             <div className="scroll-indicator">
