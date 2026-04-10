@@ -1,0 +1,81 @@
+export function initInteractions() {
+  initScrollReveal();
+  initButtonInteractions();
+  initWaitlistButtonHandler();
+}
+
+/**
+ * Initialize scroll reveal animations
+ */
+function initScrollReveal() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+}
+
+/**
+ * Initialize button click effects
+ */
+function initButtonInteractions() {
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('button');
+    if (!btn) return;
+
+    const rect = btn.getBoundingClientRect();
+    const x = (e as MouseEvent).clientX - rect.left;
+    const y = (e as MouseEvent).clientY - rect.top;
+
+    const ripple = document.createElement('span');
+    ripple.style.cssText = `
+      position: absolute;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.55s linear;
+      pointer-events: none;
+      left: ${x}px;
+      top: ${y}px;
+      width: 100px;
+      height: 100px;
+      margin-left: -50px;
+      margin-top: -50px;
+    `;
+
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
+    btn.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+  });
+}
+
+/**
+ * Handle "Join Waitlist" button clicks to open modal
+ */
+function initWaitlistButtonHandler() {
+  document.addEventListener(
+    'click',
+    (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      if (!btn) return;
+
+      if (btn.textContent?.includes('Join Waitlist')) {
+        e.preventDefault();
+        // Dispatch custom event that WaitlistModal component can listen to
+        const event = new CustomEvent('openWaitlistModal');
+        window.dispatchEvent(event);
+      }
+    },
+    true
+  );
+}

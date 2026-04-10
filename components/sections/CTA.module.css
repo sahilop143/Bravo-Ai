@@ -1,0 +1,139 @@
+.cta {
+  position: relative;
+  z-index: 1;
+  padding: 80px 24px;
+  background: var(--bg);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.shell {
+  padding: 60px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, rgba(0, 229, 255, 0.02) 100%);
+  border: 1px solid var(--line-hover);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  opacity: 0;
+  animation: cardReveal 0.8s ease-out 0.2s both;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 52px);
+  color: var(--text);
+  font-weight: 800;
+}
+
+.desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.btnPrimary,
+.btnGhost {
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  text-decoration: none;
+}
+
+.btnPrimary {
+  background: var(--brand);
+  color: #030303;
+}
+
+.btnPrimary:hover {
+  background: var(--brand-hover);
+  box-shadow: 0 0 30px var(--brand-glow-strong);
+  transform: translateY(-2px);
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line-hover);
+}
+
+.btnGhost:hover {
+  background: var(--line);
+  border-color: var(--brand);
+  color: var(--brand);
+  transform: translateY(-2px);
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .cta {
+    padding: 60px 16px;
+  }
+
+  .shell {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: clamp(28px, 5vw, 36px);
+  }
+
+  .desc {
+    font-size: 14px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnGhost {
+    width: 100%;
+  }
+}
