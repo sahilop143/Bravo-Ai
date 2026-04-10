@@ -289,11 +289,10 @@ select {
   flex: 1;
 }
 
-.primary-nav .header-actions {
+.header-actions {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: 60px;
   flex-shrink: 0;
 }
 

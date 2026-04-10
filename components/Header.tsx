@@ -27,11 +27,11 @@ export default function Header() {
           <a href="#agents">Agents</a>
           <a href="#skills">Skills</a>
           <a href="#pricing">Pricing</a>
-          <div className="header-actions">
-            <button className="btn-ghost">Sign In</button>
-            <button className="btn-primary">Get Started</button>
-          </div>
         </nav>
+        <div className="header-actions">
+          <button className="btn-ghost">Sign In</button>
+          <button className="btn-primary">Get Started</button>
+        </div>
       </div>
     </header>
   );

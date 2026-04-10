@@ -49,23 +49,6 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="hero-stats">
-              <div className="stat">
-                <div className="stat-value">10k+</div>
-                <div className="stat-label">AI Agents</div>
-              </div>
-              <div className="stat-divider"></div>
-              <div className="stat">
-                <div className="stat-value">50k+</div>
-                <div className="stat-label">Skills</div>
-              </div>
-              <div className="stat-divider"></div>
-              <div className="stat">
-                <div className="stat-value">100k+</div>
-                <div className="stat-label">Users</div>
-              </div>
-            </div>
-
             <div className="scroll-indicator">
               <svg className="scroll-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
