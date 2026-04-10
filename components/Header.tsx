@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { scrollToSection } from '@/lib/scrollToSection';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,9 +25,9 @@ export default function Header() {
           </span>
         </Link>
         <nav className="primary-nav">
-          <Link href="/#agents">Agents</Link>
-          <Link href="/#skills">Skills</Link>
-          <Link href="/#pricing">Pricing</Link>
+          <button onClick={() => scrollToSection('agents')} className="nav-link">Agents</button>
+          <button onClick={() => scrollToSection('skills')} className="nav-link">Skills</button>
+          <button onClick={() => scrollToSection('pricing')} className="nav-link">Pricing</button>
         </nav>
         <div className="header-actions">
           <button className="btn-ghost">Sign In</button>

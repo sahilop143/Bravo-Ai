@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { scrollToSection } from '@/lib/scrollToSection';
 
 export default function CreatorGuidePage() {
   return (
@@ -235,7 +236,7 @@ export default function CreatorGuidePage() {
             <div className="creator-cta">
               <h2>Ready to Start Creating?</h2>
               <p>Join thousands of creators building the future of AI</p>
-              <Link href="/#pricing" className="btn-primary btn-lg">Start Creating Today</Link>
+              <button onClick={() => scrollToSection('pricing')} className="btn-primary btn-lg">Start Creating Today</button>
             </div>
           </div>
         </section>

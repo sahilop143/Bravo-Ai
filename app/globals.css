@@ -5,6 +5,10 @@
    Enhanced Visual Edition
    ============================================ */
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg: #030303;
   --surface: rgba(26, 26, 28, 0.4);
@@ -321,6 +325,58 @@ select {
 
 .primary-nav a:hover::after {
   width: 100%;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.82rem;
+  transition: color var(--transition);
+  position: relative;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
+  outline: none;
+  line-height: 1.4;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--brand), transparent);
+  transition: width var(--transition-slow);
+}
+
+.nav-link:hover {
+  color: var(--text);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.footer-link-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: color var(--transition);
+  padding: 0;
+  font-family: inherit;
+}
+
+.footer-link-btn:hover {
+  color: var(--brand);
 }
 
 /* ============================================

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { scrollToSection } from '@/lib/scrollToSection';
 
 export default function Footer() {
   return (
@@ -39,9 +40,9 @@ export default function Footer() {
           <div className="footer-section">
             <h4>Platform</h4>
             <ul className="footer-links">
-              <li><Link href="/#agents">Agents</Link></li>
-              <li><Link href="/#skills">Skills</Link></li>
-              <li><Link href="/#pricing">Pricing</Link></li>
+              <li><button onClick={() => scrollToSection('agents')} className="footer-link-btn">Agents</button></li>
+              <li><button onClick={() => scrollToSection('skills')} className="footer-link-btn">Skills</button></li>
+              <li><button onClick={() => scrollToSection('pricing')} className="footer-link-btn">Pricing</button></li>
             </ul>
           </div>
 
