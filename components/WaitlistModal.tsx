@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Validation patterns
 const VALIDATION_PATTERNS = {
@@ -27,13 +27,21 @@ export default function WaitlistModal() {
     interest: '',
   });
 
-  const handleOpen = () => setIsOpen(true);
   const handleClose = () => {
     setIsOpen(false);
     setShowSuccess(false);
     setFormData({ name: '', email: '', interest: '' });
     setErrors({});
   };
+
+  useEffect(() => {
+    const openModal = () => setIsOpen(true);
+
+    window.addEventListener('openWaitlistModal', openModal);
+    return () => {
+      window.removeEventListener('openWaitlistModal', openModal);
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -81,11 +89,6 @@ export default function WaitlistModal() {
 
   return (
     <>
-      {/* Modal Triggers */}
-      <div style={{ display: 'none' }}>
-        <button data-action="open-waitlist" onClick={handleOpen}>Join Waitlist</button>
-      </div>
-
       {/* Modal */}
       <div className={`waitlist-modal ${isOpen ? 'active' : ''}`} onClick={handleClose}>
         <div className="waitlist-modal-content" onClick={e => e.stopPropagation()}>

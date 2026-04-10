@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Hero() {
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState('T');
   const fullText = 'The Open Marketplace for AI Agents and Skills';
 
   useEffect(() => {
-    let index = 0;
+    let index = 1;
     const interval = setInterval(() => {
       if (index < fullText.length) {
         setDisplayedText(fullText.substring(0, index + 1));

@@ -70,11 +70,8 @@ function initWaitlistButtonHandler() {
       if (!btn) return;
 
       e.preventDefault();
-      // Trigger the modal open by finding and clicking the hidden button
-      const triggerBtn = document.querySelector('button[data-action=\"open-waitlist\"]') as HTMLButtonElement;
-      if (triggerBtn) {
-        triggerBtn.click();
-      }
+      // Broadcast a single modal-open event and avoid recursive click chains.
+      window.dispatchEvent(new CustomEvent('openWaitlistModal'));
     },
     true
   );
