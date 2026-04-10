@@ -329,15 +329,24 @@ select {
   letter-spacing: 0.01em;
 }
 
+.primary-nav a {
+  position: relative;
+  transition: color 130ms ease-in-out;
+  will-change: color, transform;
+}
+
 .primary-nav a::after {
   content: '';
   position: absolute;
   bottom: -4px;
   left: 0;
-  width: 0;
-  height: 1px;
+  width: 100%;
+  height: 2px;
   background: linear-gradient(90deg, var(--brand), transparent);
-  transition: width var(--transition-slow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease-in-out, opacity 180ms ease-in-out;
+  opacity: 0.75;
 }
 
 .primary-nav a:hover {
@@ -345,7 +354,7 @@ select {
 }
 
 .primary-nav a:hover::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 .header-actions {
@@ -361,7 +370,7 @@ select {
   color: var(--text-muted);
   font-weight: 500;
   font-size: 0.82rem;
-  transition: color var(--transition);
+  transition: color 130ms ease-in-out;
   position: relative;
   letter-spacing: 0.01em;
   cursor: pointer;
@@ -371,6 +380,7 @@ select {
   vertical-align: middle;
   outline: none;
   line-height: 1.2;
+  will-change: color, transform;
 }
 
 .nav-link::after {
@@ -378,10 +388,13 @@ select {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
-  height: 1px;
+  width: 100%;
+  height: 2px;
   background: linear-gradient(90deg, var(--brand), rgba(0, 229, 255, 0.3));
-  transition: width var(--transition-slow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease-in-out, opacity 180ms ease-in-out;
+  opacity: 0.75;
 }
 
 .nav-link:hover {
@@ -389,7 +402,7 @@ select {
 }
 
 .nav-link:hover::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 .footer-link-btn {
@@ -1749,6 +1762,7 @@ select {
   justify-content: center;
   transition: all var(--transition-slow);
   overflow: hidden;
+  z-index: 2;
 }
 
 /* Techy line scan effect on close button hover */
@@ -1756,7 +1770,8 @@ select {
   background: rgba(0, 229, 255, 0.1);
   border-color: rgba(0, 229, 255, 0.4);
   color: #fff;
-  transform: rotate(90deg);
+  transform: scale(1.05);
+  transform-origin: center;
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
 }
 

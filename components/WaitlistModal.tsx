@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Validation patterns
 const VALIDATION_PATTERNS = {
@@ -27,26 +27,34 @@ export default function WaitlistModal() {
     interest: '',
   });
 
-  // Ref to store the latest close handler
-  const closeHandlerRef = React.useCallback(() => {
+  const handleOpenModal = React.useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const closeModal = React.useCallback(() => {
     setIsOpen(false);
     setShowSuccess(false);
     setFormData({ name: '', email: '', interest: '' });
     setErrors({});
   }, []);
 
-  // Event handler that always uses the latest ref
-  const handleOpenModal = React.useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
-  // Cleanup effect for event listeners
   React.useEffect(() => {
     window.addEventListener('openWaitlistModal', handleOpenModal);
     return () => {
       window.removeEventListener('openWaitlistModal', handleOpenModal);
     };
   }, [handleOpenModal]);
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    closeModal();
+  };
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -88,16 +96,16 @@ export default function WaitlistModal() {
     // All validations passed
     setShowSuccess(true);
     setTimeout(() => {
-      closeHandlerRef();
+      closeModal();
     }, 3000);
   };
 
   return (
     <>
       {/* Modal */}
-      <div className={`waitlist-modal ${isOpen ? 'active' : ''}`} onClick={closeHandlerRef}>
+      <div className={`waitlist-modal ${isOpen ? 'active' : ''}`} onClick={handleBackdropClick}>
         <div className="waitlist-modal-content" onClick={e => e.stopPropagation()}>
-          <button className="modal-close" onClick={closeHandlerRef}>×</button>
+          <button type="button" className="modal-close" aria-label="Close waitlist form" onClick={handleButtonClick}>×</button>
 
           {/* Techy corner accents */}
           <div className="modal-corner-tl"></div>
