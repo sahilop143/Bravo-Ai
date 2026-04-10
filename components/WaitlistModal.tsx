@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 // Validation patterns
 const VALIDATION_PATTERNS = {
@@ -27,21 +27,26 @@ export default function WaitlistModal() {
     interest: '',
   });
 
-  const handleClose = () => {
+  // Ref to store the latest close handler
+  const closeHandlerRef = React.useCallback(() => {
     setIsOpen(false);
     setShowSuccess(false);
     setFormData({ name: '', email: '', interest: '' });
     setErrors({});
-  };
-
-  useEffect(() => {
-    const openModal = () => setIsOpen(true);
-
-    window.addEventListener('openWaitlistModal', openModal);
-    return () => {
-      window.removeEventListener('openWaitlistModal', openModal);
-    };
   }, []);
+
+  // Event handler that always uses the latest ref
+  const handleOpenModal = React.useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  // Cleanup effect for event listeners
+  React.useEffect(() => {
+    window.addEventListener('openWaitlistModal', handleOpenModal);
+    return () => {
+      window.removeEventListener('openWaitlistModal', handleOpenModal);
+    };
+  }, [handleOpenModal]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -83,16 +88,16 @@ export default function WaitlistModal() {
     // All validations passed
     setShowSuccess(true);
     setTimeout(() => {
-      handleClose();
+      closeHandlerRef();
     }, 3000);
   };
 
   return (
     <>
       {/* Modal */}
-      <div className={`waitlist-modal ${isOpen ? 'active' : ''}`} onClick={handleClose}>
+      <div className={`waitlist-modal ${isOpen ? 'active' : ''}`} onClick={closeHandlerRef}>
         <div className="waitlist-modal-content" onClick={e => e.stopPropagation()}>
-          <button className="modal-close" onClick={handleClose}>×</button>
+          <button className="modal-close" onClick={closeHandlerRef}>×</button>
 
           {/* Techy corner accents */}
           <div className="modal-corner-tl"></div>
