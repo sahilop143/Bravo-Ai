@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import styles from './Hero.module.css';
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState('T');
@@ -21,23 +22,23 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="hero">
-      <div className="container">
+    <section id="home" className={styles.hero}>
+      <div className={styles.container}>
         <div className="hero-container">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <span className="badge-dot"></span>
+          <div className={styles.content}>
+            <div className={styles.badge}>
+              <span className={styles.badgeDot}></span>
               <span>Building the Future of AI</span>
             </div>
 
-            <h1 className="hero-title">{displayedText}</h1>
+            <h1 className={styles.title}>{displayedText}</h1>
 
-            <p className="hero-lead">
+            <p className={styles.lead}>
               Where creators publish and users discover trusted AI tools. Open platform. Creator-first.
               Fair ecosystem for the AI-powered future.
             </p>
 
-            <div className="hero-cta">
+            <div className={styles.cta}>
               <button type="button" className="btn-primary btn-lg" disabled>
                 Coming Soon
               </button>

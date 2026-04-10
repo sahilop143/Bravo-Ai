@@ -58,48 +58,6 @@
   margin-top: 8px;
 }
 
-.btnPrimary,
-.btnGhost {
-  padding: 14px 32px;
-  border-radius: var(--radius);
-  font-size: 15px;
-  font-weight: 600;
-  transition: all var(--transition);
-  cursor: pointer;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 160px;
-  text-decoration: none;
-}
-
-.btnPrimary {
-  background: var(--brand);
-  color: #030303;
-}
-
-.btnPrimary:hover {
-  background: var(--brand-hover);
-  box-shadow: 0 0 30px var(--brand-glow-strong);
-  transform: translateY(-2px);
-}
-
-.btnGhost {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--line-hover);
-}
-
-.btnGhost:hover {
-  background: var(--line);
-  border-color: var(--brand);
-  color: var(--brand);
-  transform: translateY(-2px);
-}
-
 @keyframes cardReveal {
   from {
     opacity: 0;
@@ -132,8 +90,5 @@
     flex-direction: column;
   }
 
-  .btnPrimary,
-  .btnGhost {
-    width: 100%;
-  }
+  
 }

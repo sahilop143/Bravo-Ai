@@ -1,61 +1,81 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  height: 54px;
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-  background: rgba(3, 3, 3, 0.3);
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 92vw);
+  z-index: 100;
+  backdrop-filter: blur(60px) saturate(200%);
+  -webkit-backdrop-filter: blur(60px) saturate(200%);
+  background: linear-gradient(135deg, rgba(8, 8, 10, 0.55), rgba(0, 229, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 229, 255, 0.07),
+    0 4px 40px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(0, 229, 255, 0.05);
   transition: all var(--transition-slow);
 }
 
 .header.scrolled {
-  background: rgba(3, 3, 3, 0.8);
-  border-bottom-color: var(--line-hover);
+  background: linear-gradient(135deg, rgba(6, 6, 8, 0.82), rgba(0, 229, 255, 0.06));
+  border-color: rgba(255, 255, 255, 0.13);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 229, 255, 0.11),
+    0 8px 60px rgba(0, 0, 0, 0.6),
+    0 0 120px rgba(0, 229, 255, 0.08);
 }
 
 .container {
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
-  padding: 0 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 24px;
+  padding: 0 20px;
+  position: relative;
 }
 
 .brand {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
 }
 
 .brandText {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-size: 1.08rem;
   color: var(--text);
 }
 
 .brandSub {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   color: var(--brand);
+  letter-spacing: 0.02em;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 32px;
-  margin-left: auto;
+  gap: 28px;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav a {
-  font-size: 14px;
-  font-weight: 500;
   color: var(--text-muted);
-  position: relative;
+  font-weight: 500;
+  font-size: 0.82rem;
   transition: color var(--transition);
+  position: relative;
+  letter-spacing: 0.01em;
 }
 
 .nav a::after {
@@ -64,9 +84,9 @@
   bottom: -4px;
   left: 0;
   width: 0;
-  height: 2px;
-  background: var(--brand);
-  transition: width var(--transition);
+  height: 1px;
+  background: linear-gradient(90deg, var(--brand), transparent);
+  transition: width var(--transition-slow);
 }
 
 .nav a:hover {
@@ -79,58 +99,47 @@
 
 .actions {
   display: flex;
-  gap: 12px;
-  margin-left: 24px;
-}
-
-.btnPrimary,
-.btnGhost {
-  padding: 8px 16px;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-  transition: all var(--transition);
-  cursor: pointer;
-  border: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.btnPrimary {
-  background: var(--brand);
-  color: #030303;
-}
-
-.btnPrimary:hover {
-  background: var(--brand-hover);
-  box-shadow: 0 0 20px var(--brand-glow-strong);
-}
-
-.btnGhost {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--line-hover);
-}
-
-.btnGhost:hover {
-  background: var(--line);
-  border-color: var(--brand);
-  color: var(--brand);
+  align-items: center;
+  gap: 8px;
+  margin-left: 60px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
+  .header {
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .container {
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 14px;
+  }
+
   .nav {
-    gap: 16px;
+    position: static;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .nav a {
+    font-size: 0.76rem;
+    white-space: nowrap;
   }
 
   .actions {
-    margin-left: 12px;
-    gap: 8px;
-  }
-
-  .btnPrimary,
-  .btnGhost {
-    padding: 6px 12px;
-    font-size: 12px;
+    display: none;
   }
 }

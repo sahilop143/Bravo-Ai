@@ -126,25 +126,6 @@
   padding-right: 36px;
 }
 
-.submitBtn {
-  padding: 14px 24px;
-  background: var(--brand);
-  color: #030303;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition);
-  animation: textSlideUp 0.6s ease-out 0.4s backwards;
-}
-
-.submitBtn:hover {
-  background: var(--brand-hover);
-  box-shadow: 0 0 30px var(--brand-glow-strong);
-  transform: translateY(-2px);
-}
-
 .successMessage {
   text-align: center;
   padding: 40px 20px;
