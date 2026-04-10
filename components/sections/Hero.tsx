@@ -65,6 +65,13 @@ export default function Hero() {
                 <div className="stat-label">Users</div>
               </div>
             </div>
+
+            <div className="scroll-indicator">
+              <svg className="scroll-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+              <span>Scroll to explore</span>
+            </div>
           </div>
         </div>
       </div>

@@ -597,6 +597,55 @@ select {
   flex-shrink: 0;
 }
 
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 56px;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: color var(--transition);
+  animation: scrollFade 0.8s ease-in-out 1.2s both;
+}
+
+.scroll-indicator:hover {
+  color: var(--brand);
+}
+
+.scroll-arrow {
+  width: 20px;
+  height: 20px;
+  animation: scrollBounce 2s ease-in-out infinite 1.4s;
+}
+
+@keyframes scrollBounce {
+  0% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes scrollFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ============================================
    Showcase
    ============================================ */
