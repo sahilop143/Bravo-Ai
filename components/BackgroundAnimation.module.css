@@ -1,3 +1,8 @@
+/* ============================================
+   Bravo.Ai Background Animation
+   Carbon Premium Theme - Visual Spec v1.0
+   ============================================ */
+
 .container {
   position: fixed;
   top: 0;
@@ -7,76 +12,173 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  background: #030303;
 }
 
+/* Ambient glow layer — three radial orbs representing AI energy */
 .container::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 75% 8%, rgba(0, 229, 255, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 15% 85%, rgba(138, 43, 226, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 50% at 88% 72%, rgba(138, 43, 226, 0.04) 0%, transparent 50%);
+    /* Cyan orb — top-right, large and soft */
+    radial-gradient(ellipse 65% 55% at 78% 12%, rgba(0, 229, 255, 0.15) 0%, transparent 65%),
+    /* Purple/violet orb — bottom-left, muted and broad */
+    radial-gradient(ellipse 55% 48% at 18% 88%, rgba(138, 43, 226, 0.12) 0%, transparent 60%),
+    /* Smaller cyan orb — near center, subtle */
+    radial-gradient(ellipse 30% 35% at 55% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 60%);
 }
 
+/* Cyan grid overlay — 64px spacing, edge-faded */
 .gridOverlay {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 229, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(0, 229, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.12) 1px, transparent 1px);
   background-size: 64px 64px;
-  animation: gridMove 28s linear infinite;
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 30%, transparent 90%);
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 30%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 42%, black 25%, transparent 85%);
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 42%, black 25%, transparent 85%);
 }
 
-@keyframes gridMove {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(64px); }
-}
-
+/* Floating glow orbs — parallax-style gentle drift */
 .glowOrb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  animation: orbFloat 18s ease-in-out infinite;
+  filter: blur(120px);
+  animation: orbFloat 22s ease-in-out infinite;
+  will-change: transform;
 }
 
 .orb1 {
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.11), transparent 70%);
-  top: 4%;
-  right: 8%;
+  /* Cyan — top-right */
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.35), transparent 70%);
+  top: -5%;
+  right: -5%;
   animation-delay: 0s;
+  animation-duration: 24s;
 }
 
 .orb2 {
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.1), transparent 70%);
-  bottom: 12%;
-  left: 4%;
-  animation-delay: -6s;
+  /* Purple/violet — bottom-left */
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.30), transparent 70%);
+  bottom: -8%;
+  left: -6%;
+  animation-delay: -8s;
+  animation-duration: 28s;
 }
 
 .orb3 {
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.07), transparent 70%);
-  top: 52%;
-  left: 52%;
-  animation-delay: -12s;
+  /* Smaller cyan — near center */
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.20), transparent 70%);
+  top: 45%;
+  left: 55%;
+  animation-delay: -14s;
+  animation-duration: 20s;
 }
 
 @keyframes orbFloat {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(40px, -40px) scale(1.06); }
-  50% { transform: translate(-25px, 25px) scale(0.94); }
-  75% { transform: translate(25px, 35px) scale(1.03); }
+  25% { transform: translate(35px, -30px) scale(1.04); }
+  50% { transform: translate(-20px, 20px) scale(0.96); }
+  75% { transform: translate(20px, 28px) scale(1.02); }
 }
 
+/* Scan line — hidden by default, available for retro-tech aesthetic */
 .scanLine {
   display: none;
+}
+
+/* ============================================
+   Enhanced Parallax & Parallax Scroll Handling
+   ============================================ */
+
+.glowOrb.parallax {
+  will-change: transform;
+  animation: none;
+}
+
+/* ============================================
+   Grid Enhancement with Fade
+   ============================================ */
+
+.gridOverlay {
+  animation: gridScroll 40s linear infinite;
+}
+
+@keyframes gridScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 64px; }
+}
+
+/* ============================================
+   Orb Glow Variations
+   ============================================ */
+
+.orb1::before,
+.orb2::before,
+.orb3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: orbGlowPulse 8s ease-in-out infinite;
+}
+
+@keyframes orbGlowPulse {
+  0%, 100% {
+    filter: blur(120px) opacity(1);
+  }
+  50% {
+    filter: blur(160px) opacity(0.7);
+  }
+}
+
+/* ============================================
+   Ambient Environment Enhancement
+   ============================================ */
+
+.container {
+  /* Ensures proper stacking context */
+  will-change: transform;
+}
+
+/* Top-to-bottom gradient overlay for depth */
+.container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(3, 3, 3, 0.1) 50%,
+    rgba(3, 3, 3, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ============================================
+   Reduced Motion Support
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .glowOrb {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .gridOverlay {
+    animation: none;
+  }
+
+  .container::before {
+    animation: none;
+  }
 }

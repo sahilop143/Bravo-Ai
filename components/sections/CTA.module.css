@@ -1,7 +1,7 @@
 .cta {
   position: relative;
   z-index: 1;
-  padding: 80px 24px;
+  padding: 100px 24px 120px;
   background: var(--bg);
 }
 
@@ -11,43 +11,93 @@
 }
 
 .shell {
-  padding: 60px;
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, rgba(0, 229, 255, 0.02) 100%);
-  border: 1px solid var(--line-hover);
-  border-radius: var(--radius-xl);
+  position: relative;
+  padding: 80px 60px;
+  background: linear-gradient(145deg, rgba(26, 26, 28, 0.4), rgba(8, 8, 10, 0.3));
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(0, 229, 255, 0.12);
+  border-radius: 24px;
   text-align: center;
+  overflow: hidden;
   opacity: 0;
-  animation: cardReveal 0.8s ease-out 0.2s both;
+  animation: shellReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+/* Animated gradient border */
+.shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(138, 43, 226, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
+}
+
+/* Inner top glow */
+.shell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.6), rgba(138, 43, 226, 0.4), transparent);
+  z-index: 1;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .eyebrow {
   font-size: 12px;
   font-weight: 600;
+  font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--brand);
+  opacity: 0;
+  animation: textSlideUp 0.6s ease-out 0.3s both;
 }
 
 .title {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 6vw, 52px);
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
   color: var(--text);
   font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0;
+  background: linear-gradient(135deg, var(--text) 0%, rgba(245, 245, 247, 0.75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: textSlideUp 0.7s ease-out 0.4s both;
 }
 
 .desc {
-  font-size: 16px;
+  font-size: 1.05rem;
   color: var(--text-muted);
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.6;
+  max-width: 520px;
+  margin: 0;
+  line-height: 1.7;
+  opacity: 0;
+  animation: textSlideUp 0.7s ease-out 0.5s both;
 }
 
 .actions {
@@ -55,10 +105,11 @@
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 8px;
+  opacity: 0;
+  animation: textSlideUp 0.7s ease-out 0.6s both;
 }
 
-@keyframes cardReveal {
+@keyframes shellReveal {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -69,26 +120,86 @@
   }
 }
 
+@keyframes textSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .cta {
+    padding: 80px 24px 100px;
+  }
+
+  .shell {
+    padding: 60px 40px;
+  }
+
+  .content {
+    gap: 24px;
+  }
+}
+
 @media (max-width: 768px) {
   .cta {
-    padding: 60px 16px;
+    padding: 60px 16px 80px;
   }
 
   .shell {
     padding: 40px 24px;
+    border-radius: 16px;
+  }
+
+  .shell::before {
+    border-radius: 16px;
   }
 
   .title {
-    font-size: clamp(28px, 5vw, 36px);
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
   }
 
   .desc {
-    font-size: 14px;
+    font-size: 0.95rem;
+    max-width: 100%;
   }
 
   .actions {
     flex-direction: column;
+    gap: 12px;
   }
 
-  
+  .content {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta {
+    padding: 48px 16px 60px;
+  }
+
+  .shell {
+    padding: 32px 16px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+  }
+
+  .desc {
+    font-size: 0.9rem;
+  }
+
+  .actions {
+    gap: 10px;
+  }
 }

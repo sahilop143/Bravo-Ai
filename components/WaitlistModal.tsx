@@ -207,14 +207,14 @@ export default function WaitlistModal() {
             <p className="form-note">We respect your privacy. Unsubscribe at any time.</p>
           </>
         ) : (
-          <div className={`${styles.successMessage} show`}>
+          <div className={styles.successMessage}>
             <div className={styles.icon}>
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                 <path d="M20 6L9 17l-5-5" />
               </svg>
             </div>
-            <h3>Welcome aboard!</h3>
-            <p>Check your email for updates</p>
+            <h3 className={styles.successTitle}>Welcome aboard!</h3>
+            <p className={styles.successDesc}>Check your email for updates and be ready to explore the future of AI marketplace.</p>
           </div>
         )}
       </div>
