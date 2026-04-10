@@ -66,9 +66,7 @@ export default function Footer() {
         <div className="footer-divider"></div>
 
         <div className="footer-bottom">
-          <p className="copyright">
-            &copy; {new Date().getFullYear()} Bravo.Ai. All rights reserved.
-          </p>
+          <p className="copyright">&copy; 2026 Bravo.Ai. All rights reserved.</p>
         </div>
       </div>
     </footer>

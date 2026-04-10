@@ -15,18 +15,8 @@ export default function CTA() {
               Phase 1 is free for all users. Creators and users building the future of AI together.
             </p>
             <div className="cta-actions">
-              <button 
-                className="btn-primary btn-lg"
-                data-action="open-waitlist"
-                aria-label="Join the waitlist for early access"
-              >
-                Join Waitlist
-              </button>
-              <Link 
-                href="/creator-guide" 
-                className="btn-ghost btn-lg"
-                aria-label="Learn more about creator opportunities"
-              >
+              <button className="btn-primary btn-lg" data-action="open-waitlist">Join Waitlist</button>
+              <Link href="/creator-guide" className="btn-ghost btn-lg">
                 Learn More
               </Link>
             </div>

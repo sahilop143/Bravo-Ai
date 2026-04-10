@@ -16,30 +16,20 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`} role="banner">
+    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-shell">
-        <Link href="/" className="brand" aria-label="Bravo.Ai - Home">
+        <div className="brand">
           <span className="brand-text">
             Bravo<span className="brand-sub">.Ai</span>
           </span>
-        </Link>
-        <nav className="primary-nav" role="navigation" aria-label="Main navigation">
+        </div>
+        <nav className="primary-nav">
           <a href="#agents">Agents</a>
           <a href="#skills">Skills</a>
           <a href="#pricing">Pricing</a>
           <div className="header-actions">
-            <button 
-              className="btn-ghost"
-              aria-label="Sign in to your account"
-            >
-              Sign In
-            </button>
-            <button 
-              className="btn-primary"
-              aria-label="Get started with Bravo.Ai"
-            >
-              Get Started
-            </button>
+            <button className="btn-ghost">Sign In</button>
+            <button className="btn-primary">Get Started</button>
           </div>
         </nav>
       </div>

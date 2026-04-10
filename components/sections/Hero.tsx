@@ -38,18 +38,9 @@ export default function Hero() {
             </p>
 
             <div className="hero-cta">
-              <button 
-                className="btn-primary btn-lg"
-                aria-label="Explore the AI marketplace"
-              >
-                Explore Marketplace
-              </button>
-              <button 
-                className="btn-ghost btn-lg" 
-                data-action="open-waitlist"
-                aria-label="Join our waitlist to get early access"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <button className="btn-primary btn-lg">Explore Marketplace</button>
+              <button className="btn-ghost btn-lg" data-action="open-waitlist">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                   <polyline points="15 3 21 3 21 9"></polyline>
                   <line x1="10" y1="14" x2="21" y2="3"></line>
