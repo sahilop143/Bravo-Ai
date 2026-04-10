@@ -1,48 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-
-function useCountUp(target: number, suffix: string = '', duration: number = 2000) {
-  const [value, setValue] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true);
-          const startTime = performance.now();
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease-out cubic for smooth deceleration
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setValue(Math.round(eased * target));
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            }
-          };
-          requestAnimationFrame(animate);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [target, duration, hasStarted]);
-
-  return { value, ref, suffix };
-}
+import React, { useState, useEffect } from 'react';
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState('T');
-  const [typingDone, setTypingDone] = useState(false);
   const fullText = 'The Open Marketplace for AI Agents and Skills';
 
   useEffect(() => {
@@ -53,16 +14,11 @@ export default function Hero() {
         index++;
       } else {
         clearInterval(interval);
-        setTypingDone(true);
       }
     }, 28);
 
     return () => clearInterval(interval);
   }, []);
-
-  const stat1 = useCountUp(10, 'K+');
-  const stat2 = useCountUp(500, '+');
-  const stat3 = useCountUp(99, '.9%');
 
   return (
     <section id="home" className="hero">
@@ -74,7 +30,7 @@ export default function Hero() {
               <span>Building the Future of AI</span>
             </div>
 
-            <h1 className="hero-title">{displayedText}<span className={`hero-cursor ${typingDone ? 'blink' : ''}`}>|</span></h1>
+            <h1 className="hero-title">{displayedText}</h1>
 
             <p className="hero-lead">
               Where creators publish and users discover trusted AI tools. Open platform. Creator-first.
@@ -94,19 +50,19 @@ export default function Hero() {
             </div>
 
             <div className="hero-stats">
-              <div className="stat" ref={stat1.ref}>
-                <span className="stat-value">{stat1.value}{stat1.suffix}</span>
-                <span className="stat-label">AI Agents</span>
+              <div className="stat">
+                <span className="stat-value">100%</span>
+                <span className="stat-label">Open Source</span>
               </div>
               <div className="stat-divider"></div>
-              <div className="stat" ref={stat2.ref}>
-                <span className="stat-value">{stat2.value}{stat2.suffix}</span>
-                <span className="stat-label">Creators</span>
+              <div className="stat">
+                <span className="stat-value">Free</span>
+                <span className="stat-label">Phase 1</span>
               </div>
               <div className="stat-divider"></div>
-              <div className="stat" ref={stat3.ref}>
-                <span className="stat-value">{stat3.value}{stat3.suffix}</span>
-                <span className="stat-label">Uptime</span>
+              <div className="stat">
+                <span className="stat-value">0%</span>
+                <span className="stat-label">Platform Fee</span>
               </div>
             </div>
 
