@@ -1,13 +1,22 @@
-export function initInteractions() {
-  initScrollReveal();
-  initButtonInteractions();
-  initWaitlistButtonHandler();
-}
+// Social platform constants
+export const SOCIAL_PLATFORMS = {
+  TWITTER: 'Twitter',
+  GITHUB: 'GitHub',
+  DISCORD: 'Discord',
+} as const;
+
+export type SocialPlatform = typeof SOCIAL_PLATFORMS[keyof typeof SOCIAL_PLATFORMS];
+
+// Event type constants
+export const EVENT_TYPES = {
+  OPEN_WAITLIST: 'openWaitlistModal',
+  OPEN_SOCIAL: 'openSocialPopup',
+} as const;
 
 /**
  * Initialize scroll reveal animations
  */
-function initScrollReveal() {
+export function initScrollReveal() {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -24,18 +33,26 @@ function initScrollReveal() {
 }
 
 /**
- * Initialize button click effects
+ * Initialize button click ripple effects with proper cleanup
  */
+let rippleCleanup: (() => void) | null = null;
+
 function initButtonInteractions() {
-  document.addEventListener('click', (e) => {
+  // Remove existing listener if any
+  if (rippleCleanup) {
+    rippleCleanup();
+  }
+
+  const handleClick = (e: MouseEvent) => {
     const btn = (e.target as HTMLElement).closest('button');
     if (!btn) return;
 
     const rect = btn.getBoundingClientRect();
-    const x = (e as MouseEvent).clientX - rect.left;
-    const y = (e as MouseEvent).clientY - rect.top;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
     const ripple = document.createElement('span');
+    ripple.className = 'ripple-effect';
     ripple.style.cssText = `
       position: absolute;
       background: rgba(255, 255, 255, 0.25);
@@ -56,23 +73,92 @@ function initButtonInteractions() {
     btn.appendChild(ripple);
 
     setTimeout(() => ripple.remove(), 600);
-  });
+  };
+
+  document.addEventListener('click', handleClick);
+
+  // Return cleanup function
+  rippleCleanup = () => {
+    document.removeEventListener('click', handleClick);
+  };
 }
 
 /**
  * Handle "Join Waitlist" button clicks to open modal (using data-action attribute)
  */
-function initWaitlistButtonHandler() {
-  document.addEventListener(
-    'click',
-    (e) => {
-      const btn = (e.target as HTMLElement).closest('button[data-action="open-waitlist"]');
-      if (!btn) return;
+let waitlistCleanup: (() => void) | null = null;
 
-      e.preventDefault();
-      // Broadcast a single modal-open event and avoid recursive click chains.
-      window.dispatchEvent(new CustomEvent('openWaitlistModal'));
-    },
-    true
-  );
+function initWaitlistButtonHandler() {
+  // Remove existing listener if any
+  if (waitlistCleanup) {
+    waitlistCleanup();
+  }
+
+  const handleClick = (e: MouseEvent) => {
+    const btn = (e.target as HTMLElement).closest('button[data-action="open-waitlist"]');
+    if (!btn) return;
+
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent(EVENT_TYPES.OPEN_WAITLIST));
+  };
+
+  document.addEventListener('click', handleClick, true);
+
+  // Return cleanup function
+  waitlistCleanup = () => {
+    document.removeEventListener('click', handleClick, true);
+  };
 }
+
+// Social popup cleanup
+let socialCleanup: (() => void) | null = null;
+
+/**
+ * Initialize social popup event handler
+ */
+function initSocialPopupHandler() {
+  // Remove existing listener if any
+  if (socialCleanup) {
+    socialCleanup();
+  }
+
+  const handleSocialClick = (e: CustomEvent) => {
+    window.dispatchEvent(new CustomEvent(EVENT_TYPES.OPEN_SOCIAL, { detail: e.detail }));
+  };
+
+  window.addEventListener('openSocialPopup', handleSocialClick as EventListener);
+
+  // Return cleanup function
+  socialCleanup = () => {
+    window.removeEventListener('openSocialPopup', handleSocialClick as EventListener);
+  };
+}
+
+/**
+ * Initialize all interactions (scroll reveal, buttons, waitlist, social)
+ */
+export function initInteractions() {
+  initScrollReveal();
+  initButtonInteractions();
+  initWaitlistButtonHandler();
+  initSocialPopupHandler();
+}
+
+// Export cleanup function for app unmount
+export function cleanupInteractions() {
+  if (rippleCleanup) {
+    rippleCleanup();
+    rippleCleanup = null;
+  }
+  if (waitlistCleanup) {
+    waitlistCleanup();
+    waitlistCleanup = null;
+  }
+  if (socialCleanup) {
+    socialCleanup();
+    socialCleanup = null;
+  }
+}
+
+// Re-export for convenience
+export { initSocialPopupHandler };
