@@ -60,20 +60,20 @@ function initButtonInteractions() {
 }
 
 /**
- * Handle "Join Waitlist" button clicks to open modal
+ * Handle "Join Waitlist" button clicks to open modal (using data-action attribute)
  */
 function initWaitlistButtonHandler() {
   document.addEventListener(
     'click',
     (e) => {
-      const btn = (e.target as HTMLElement).closest('button');
+      const btn = (e.target as HTMLElement).closest('button[data-action="open-waitlist"]');
       if (!btn) return;
 
-      if (btn.textContent?.includes('Join Waitlist')) {
-        e.preventDefault();
-        // Dispatch custom event that WaitlistModal component can listen to
-        const event = new CustomEvent('openWaitlistModal');
-        window.dispatchEvent(event);
+      e.preventDefault();
+      // Trigger the modal open by finding and clicking the hidden button
+      const triggerBtn = document.querySelector('button[data-action=\"open-waitlist\"]') as HTMLButtonElement;
+      if (triggerBtn) {
+        triggerBtn.click();
       }
     },
     true

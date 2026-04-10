@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import styles from './Showcase.module.css';
 
 export default function Showcase() {
   const values = [
@@ -39,20 +38,25 @@ export default function Showcase() {
   ];
 
   return (
-    <section id="agents" className={styles.showcase}>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <p className={styles.eyebrow}>Core Mission</p>
+    <section id="agents" className="showcase">
+      <div className="container">
+        <div className="showcase-header">
+          <p className="eyebrow">Core Mission</p>
           <h2>Built on Trust, Powered by Community</h2>
         </div>
 
-        <div className={styles.grid}>
+        <div className="values-grid">
           {values.map((value, index) => (
-            <div key={index} className={styles.card}>
-              <div className={styles.icon}>{value.icon}</div>
+            <article 
+              key={index} 
+              className={`value-card reveal-delay-${index + 1}`}
+              role="region"
+              aria-label={`${value.title}: ${value.description.substring(0, 50)}...`}
+            >
+              <div className="value-icon" aria-hidden="true">{value.icon}</div>
               <h3>{value.title}</h3>
               <p>{value.description}</p>
-            </div>
+            </article>
           ))}
         </div>
       </div>

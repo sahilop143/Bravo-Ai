@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import styles from './FeatureStrip.module.css';
 
 export default function FeatureStrip() {
   const features = [
@@ -39,13 +38,13 @@ export default function FeatureStrip() {
   ];
 
   return (
-    <section id="skills" className={styles.strip}>
-      <div className={styles.container}>
-        <div className={styles.inner}>
+    <section id="skills" className="feature-strip">
+      <div className="container">
+        <div className="feature-strip-inner">
           {features.map((feature, index) => (
-            <div key={index} className={styles.item}>
-              <div className={styles.icon}>{feature.icon}</div>
-              <div className={styles.text}>
+            <div key={index} className="strip-item">
+              <div className="strip-icon">{feature.icon}</div>
+              <div className="strip-text">
                 <strong>{feature.title}</strong>
                 <span>{feature.description}</span>
               </div>

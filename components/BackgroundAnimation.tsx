@@ -1,16 +1,15 @@
 'use client';
 
 import React from 'react';
-import styles from './BackgroundAnimation.module.css';
 
 export default function BackgroundAnimation() {
   return (
-    <div className={styles.container}>
-      <div className={styles.gridOverlay}></div>
-      <div className={`${styles.orb} ${styles.orb1}`}></div>
-      <div className={`${styles.orb} ${styles.orb2}`}></div>
-      <div className={`${styles.orb} ${styles.orb3}`}></div>
-      <div className={styles.scanLine}></div>
+    <div className="bg-animation">
+      <div className="grid-overlay"></div>
+      <div className="glow-orb orb-1"></div>
+      <div className="glow-orb orb-2"></div>
+      <div className="glow-orb orb-3"></div>
+      <div className="scan-line"></div>
     </div>
   );
 }

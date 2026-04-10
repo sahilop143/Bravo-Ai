@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styles from './Header.module.css';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,20 +16,30 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
-      <div className={styles.container}>
-        <Link href="/" className={styles.brand}>
-          <span className={styles.brandText}>
-            Bravo<span className={styles.brandSub}>.Ai</span>
+    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`} role="banner">
+      <div className="nav-shell">
+        <Link href="/" className="brand" aria-label="Bravo.Ai - Home">
+          <span className="brand-text">
+            Bravo<span className="brand-sub">.Ai</span>
           </span>
         </Link>
-        <nav className={styles.nav}>
+        <nav className="primary-nav" role="navigation" aria-label="Main navigation">
           <a href="#agents">Agents</a>
           <a href="#skills">Skills</a>
           <a href="#pricing">Pricing</a>
-          <div className={styles.actions}>
-            <button className={styles.btnGhost}>Sign In</button>
-            <button className={styles.btnPrimary}>Get Started</button>
+          <div className="header-actions">
+            <button 
+              className="btn-ghost"
+              aria-label="Sign in to your account"
+            >
+              Sign In
+            </button>
+            <button 
+              className="btn-primary"
+              aria-label="Get started with Bravo.Ai"
+            >
+              Get Started
+            </button>
           </div>
         </nav>
       </div>

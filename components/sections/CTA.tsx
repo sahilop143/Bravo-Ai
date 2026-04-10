@@ -2,22 +2,31 @@
 
 import React from 'react';
 import Link from 'next/link';
-import styles from './CTA.module.css';
 
 export default function CTA() {
   return (
-    <section id="pricing" className={styles.cta}>
-      <div className={styles.container}>
-        <div className={styles.shell}>
-          <div className={styles.content}>
-            <p className={styles.eyebrow}>Early Access · Free</p>
-            <h2 className={styles.title}>Join the AI Marketplace</h2>
-            <p className={styles.desc}>
+    <section id="pricing" className="section-cta">
+      <div className="container">
+        <div className="cta-shell">
+          <div className="cta-content">
+            <p className="cta-eyebrow">Early Access · Free</p>
+            <h2 className="cta-title">Join the AI Marketplace</h2>
+            <p className="cta-desc">
               Phase 1 is free for all users. Creators and users building the future of AI together.
             </p>
-            <div className={styles.actions}>
-              <button className={styles.btnPrimary}>Join Waitlist</button>
-              <Link href="/creator-guide" className={styles.btnGhost}>
+            <div className="cta-actions">
+              <button 
+                className="btn-primary btn-lg"
+                data-action="open-waitlist"
+                aria-label="Join the waitlist for early access"
+              >
+                Join Waitlist
+              </button>
+              <Link 
+                href="/creator-guide" 
+                className="btn-ghost btn-lg"
+                aria-label="Learn more about creator opportunities"
+              >
                 Learn More
               </Link>
             </div>
