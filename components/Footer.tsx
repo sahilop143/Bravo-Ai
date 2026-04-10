@@ -39,9 +39,9 @@ export default function Footer() {
           <div className="footer-section">
             <h4>Platform</h4>
             <ul className="footer-links">
-              <li><a href="#agents">Agents</a></li>
-              <li><a href="#skills">Skills</a></li>
-              <li><a href="#pricing">Pricing</a></li>
+              <li><Link href="/#agents">Agents</Link></li>
+              <li><Link href="/#skills">Skills</Link></li>
+              <li><Link href="/#pricing">Pricing</Link></li>
             </ul>
           </div>
 

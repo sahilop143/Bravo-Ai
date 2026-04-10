@@ -18,15 +18,15 @@ export default function Header() {
   return (
     <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-shell">
-        <div className="brand">
+        <Link href="/" className="brand">
           <span className="brand-text">
             Bravo<span className="brand-sub">.Ai</span>
           </span>
-        </div>
+        </Link>
         <nav className="primary-nav">
-          <a href="#agents">Agents</a>
-          <a href="#skills">Skills</a>
-          <a href="#pricing">Pricing</a>
+          <Link href="/#agents">Agents</Link>
+          <Link href="/#skills">Skills</Link>
+          <Link href="/#pricing">Pricing</Link>
         </nav>
         <div className="header-actions">
           <button className="btn-ghost">Sign In</button>

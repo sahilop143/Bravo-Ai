@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -234,7 +235,7 @@ export default function CreatorGuidePage() {
             <div className="creator-cta">
               <h2>Ready to Start Creating?</h2>
               <p>Join thousands of creators building the future of AI</p>
-              <button className="btn-primary btn-lg">Start Creating Today</button>
+              <Link href="/#pricing" className="btn-primary btn-lg">Start Creating Today</Link>
             </div>
           </div>
         </section>
