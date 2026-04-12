@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- § 2.2 Title Tag: [Primary Keyword] | [Brand] — [USP] -->
+  <title>Open AI Marketplace | Bravo.Ai — Discover & Publish AI Agents</title>
+
+  <!-- § 2.3 Meta Description: [Pain] → [Product] [Benefit]. [Proof]. [CTA]. -->
+  <meta name="description" content="Bravo.Ai is the open marketplace for AI agents and skills. Creator-first, community-driven, and built for trust. Join 2,400+ early adopters — get early access now." />
+  <meta name="keywords" content="AI marketplace, AI agents, AI skills, open AI platform, AI tools, publish AI agents, discover AI, Bravo AI" />
+  <meta name="author" content="Bravo AI" />
+
+  <!-- Open Graph (Facebook, LinkedIn, Discord) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bravo.Ai" />
+  <meta property="og:title" content="Open AI Marketplace | Bravo.Ai — Discover & Publish AI Agents" />
+  <meta property="og:description" content="The open marketplace for AI agents and skills. Creator-first, community-driven, built for trust. Join 2,400+ early adopters." />
+  <meta property="og:url" content="https://bravo-ai.me/" />
+  <meta property="og:image" content="https://bravo-ai.me/favicon.svg" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Open AI Marketplace | Bravo.Ai" />
+  <meta name="twitter:description" content="Creator-first, community-driven AI marketplace. Discover and publish trusted AI agents & skills." />
+  <meta name="twitter:image" content="https://bravo-ai.me/favicon.svg" />
+
+  <!-- § 3.2 Canonical URL -->
+  <link rel="canonical" href="https://bravo-ai.me/" />
+
+  <meta name="theme-color" content="#07080f" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- § 3.1 Schema.org Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Bravo AI",
+        "alternateName": "Bravo.Ai",
+        "url": "https://bravo-ai.me",
+        "logo": "https://bravo-ai.me/favicon.svg",
+        "description": "The open marketplace for AI agents and skills. Creator-first, community-driven, open ecosystem.",
+        "foundingDate": "2026",
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "name": "Bravo.Ai",
+        "url": "https://bravo-ai.me",
+        "description": "Open marketplace for AI agents and skills",
+        "publisher": { "@type": "Organization", "name": "Bravo AI" }
+      },
+      {
+        "@type": "WebPage",
+        "name": "Open AI Marketplace | Bravo.Ai",
+        "url": "https://bravo-ai.me/",
+        "description": "Bravo.Ai is the open marketplace for AI agents and skills. Creator-first, community-driven, and built for trust.",
+        "isPartOf": { "@type": "WebSite", "name": "Bravo.Ai", "url": "https://bravo-ai.me" },
+        "about": {
+          "@type": "SoftwareApplication",
+          "name": "Bravo.Ai Marketplace",
+          "applicationCategory": "Artificial Intelligence",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/PreOrder"
+          }
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="grid-overlay"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-shell">
+      <a href="javascript:void(0)" class="brand" aria-label="Bravo.Ai Home" data-scroll="home">
+        <span class="brand-text">Bravo<span class="brand-sub">.Ai</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="javascript:void(0)" data-scroll="agents">Agents</a>
+        <a href="javascript:void(0)" data-scroll="skills">Skills</a>
+        <a href="javascript:void(0)" data-scroll="how-it-works">How It Works</a>
+        <a href="javascript:void(0)" data-scroll="pricing">Pricing</a>
+      </nav>
+
+      <div class="desktop-actions">
+        <!-- Kept empty to balance flex layout for perfectly centered nav links -->
+      </div>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="javascript:void(0)" data-scroll="agents" class="mobile-nav-link">Agents</a>
+    <a href="javascript:void(0)" data-scroll="skills" class="mobile-nav-link">Skills</a>
+    <a href="javascript:void(0)" data-scroll="how-it-works" class="mobile-nav-link">How It Works</a>
+    <a href="javascript:void(0)" data-scroll="pricing" class="mobile-nav-link">Pricing</a>
+    <div class="mobile-nav-actions">
+      <button class="btn-ghost btn-lg" type="button" data-action="join-waitlist" style="justify-content:center;">Join Waitlist</button>
+      <button class="btn-primary btn-lg" type="button" data-action="join-waitlist" style="justify-content:center;">Get Started →</button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Phase 1 · Now Open · Free</span>
+          </div>
+
+          <h1 class="hero-title">
+            The Open Marketplace<br>
+            for <span class="highlight">AI Agents</span> &amp; Skills
+          </h1>
+
+          <p class="hero-lead">
+            Where creators publish and users discover trusted AI tools.
+            Open platform. Creator-first. Fair ecosystem for the AI-powered future.
+          </p>
+
+          <div class="hero-cta">
+            <button class="btn-primary btn-lg" type="button" id="heroBrowse">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+              Explore Marketplace
+            </button>
+            <button class="btn-ghost btn-lg" type="button" data-action="join-waitlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Join Waitlist
+            </button>
+          </div>
+
+          <!-- Stats Bar -->
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-value" data-target="1200">0+</span>
+              <span class="stat-label"> Registered for Early Access  </span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-value" data-target="340">0+</span>
+              <span class="stat-label">Creators Registered </span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-value" data-target="98">0%</span>
+              <span class="stat-label">Uptime</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CORE MISSION ── -->
+    <section id="agents" class="showcase">
+      <div class="container">
+        <div class="showcase-header reveal">
+          <p class="eyebrow">Core Mission</p>
+          <h2>Built on Trust, Powered by Community</h2>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card reveal reveal-delay-1">
+            <div class="value-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <h3>Open Platform</h3>
+            <p>No gatekeeping. Transparent review process. Anyone can publish AI agents and skills. Community-driven quality standards.</p>
+          </div>
+
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M6 20c0-3 2-4 6-4s6 1 6 4"/>
+              </svg>
+            </div>
+            <h3>Creator First</h3>
+            <p>Direct audience connection. Full control over your AI tools. Built for the creators who build the future.</p>
+          </div>
+
+          <div class="value-card reveal reveal-delay-3">
+            <div class="value-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <h3>User Trust</h3>
+            <p>Verified creators. Quality assurance. Transparent metrics. Safe, reliable AI tools you can depend on every day.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURED AGENTS SHOWCASE ── -->
+    <section id="showcase" class="featured-agents">
+      <div class="container">
+        <div class="showcase-header reveal">
+          <p class="eyebrow">Featured Tools</p>
+          <h2>Discover What's Possible</h2>
+        </div>
+
+        <div class="agents-grid">
+          <div class="agent-card reveal reveal-delay-1">
+            <div class="agent-card-header">
+              <div class="agent-avatar" style="background:linear-gradient(135deg,var(--cyan),var(--violet));">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <div class="agent-meta">
+                <span class="agent-category">Writing</span>
+                <span class="agent-rating">★ 4.9</span>
+              </div>
+            </div>
+            <h3>ContentForge AI</h3>
+            <p>Generate blog posts, social media content, and marketing copy with context-aware AI that adapts to your brand voice.</p>
+            <div class="agent-tags">
+              <span class="agent-tag">SEO</span>
+              <span class="agent-tag">Marketing</span>
+              <span class="agent-tag">Multi-language</span>
+            </div>
+          </div>
+
+          <div class="agent-card reveal reveal-delay-2">
+            <div class="agent-card-header">
+              <div class="agent-avatar" style="background:linear-gradient(135deg,#7c3aed,#f59e0b);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div class="agent-meta">
+                <span class="agent-category">Development</span>
+                <span class="agent-rating">★ 4.8</span>
+              </div>
+            </div>
+            <h3>CodePilot Pro</h3>
+            <p>Intelligent code completion, debugging assistance, and architecture suggestions for full-stack developers.</p>
+            <div class="agent-tags">
+              <span class="agent-tag">JavaScript</span>
+              <span class="agent-tag">Python</span>
+              <span class="agent-tag">DevOps</span>
+            </div>
+          </div>
+
+          <div class="agent-card reveal reveal-delay-3">
+            <div class="agent-card-header">
+              <div class="agent-avatar" style="background:linear-gradient(135deg,#10b981,#06b6d4);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/>
+                  <line x1="9" y1="21" x2="9" y2="9"/>
+                </svg>
+              </div>
+              <div class="agent-meta">
+                <span class="agent-category">Productivity</span>
+                <span class="agent-rating">★ 4.7</span>
+              </div>
+            </div>
+            <h3>TaskFlow Automator</h3>
+            <p>Automate repetitive workflows, schedule meetings, manage emails, and integrate with 200+ productivity tools.</p>
+            <div class="agent-tags">
+              <span class="agent-tag">Automation</span>
+              <span class="agent-tag">Calendar</span>
+              <span class="agent-tag">Email</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURE STRIP ── -->
+    <section id="skills" class="feature-strip">
+      <div class="container">
+        <div class="feature-strip-inner reveal">
+
+          <div class="strip-item">
+            <div class="strip-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+              </svg>
+            </div>
+            <div class="strip-text">
+              <strong>Instant Deploy</strong>
+              <span>Publish any AI agent in minutes with zero friction or infrastructure setup</span>
+            </div>
+          </div>
+
+          <div class="strip-item">
+            <div class="strip-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="strip-text">
+              <strong>Composable Skills</strong>
+              <span>Stack and chain skills to build powerful, complex AI pipelines</span>
+            </div>
+          </div>
+
+          <div class="strip-item">
+            <div class="strip-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="strip-text">
+              <strong>Community Vetted</strong>
+              <span>Ratings, reviews, and real usage data you can trust</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section id="how-it-works" class="how-it-works">
+      <div class="container">
+        <div class="showcase-header reveal">
+          <p class="eyebrow">Simple Process</p>
+          <h2>Up and Running in Minutes</h2>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-item reveal reveal-delay-1">
+            <div class="step-number">01</div>
+            <h3>Browse &amp; Discover</h3>
+            <p>Explore thousands of AI agents and skills across every category — from writing to coding to automation.</p>
+          </div>
+
+          <div class="step-item reveal reveal-delay-2">
+            <div class="step-number">02</div>
+            <h3>Deploy Instantly</h3>
+            <p>One-click deployment. No infrastructure required. Connect to your workflow in seconds via API or UI.</p>
+          </div>
+
+          <div class="step-item reveal reveal-delay-3">
+            <div class="step-number">03</div>
+            <h3>Build &amp; Publish</h3>
+            <p>Creators share their AI tools with a growing audience and help shape an open, fair ecosystem.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section id="pricing" class="section-cta">
+      <div class="container">
+        <div class="cta-shell reveal">
+          <!-- Floating particles -->
+          <div class="particle" style="width:4px;height:4px;top:15%;left:10%;--dur:9s;--delay:0s;"></div>
+          <div class="particle" style="width:3px;height:3px;top:70%;left:80%;--dur:7s;--delay:2s;"></div>
+          <div class="particle" style="width:5px;height:5px;top:40%;left:90%;--dur:11s;--delay:4s;"></div>
+
+          <div class="cta-content">
+            <p class="cta-eyebrow">Early Access &middot; Free Forever</p>
+            <h2 class="cta-title">Join the AI Marketplace</h2>
+            <p class="cta-desc">Phase 1 is completely free. Creators and users building the future of AI together. No credit card required.</p>
+            <div class="cta-actions">
+              <button class="btn-primary btn-lg" type="button" data-action="join-waitlist">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.38 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Join the Waitlist
+              </button>
+              <button class="btn-ghost btn-lg" type="button" id="ctaBrowse">
+                Browse Agents →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CREATOR RESOURCES ── -->
+    <section id="resources" class="creator-resources">
+      <div class="container">
+        <div class="showcase-header reveal">
+          <p class="eyebrow">For Creators</p>
+          <h2>Build &amp; Publish</h2>
+        </div>
+
+        <div class="resources-grid">
+          <div class="resource-card reveal reveal-delay-1">
+            <div class="resource-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+            <h3>Documentation</h3>
+            <p>Step-by-step guides to build and publish your first AI agent or skill on Bravo.Ai.</p>
+            <a href="javascript:void(0)" class="resource-link" data-social="discord">Get Started →</a>
+          </div>
+
+          <div class="resource-card reveal reveal-delay-2">
+            <div class="resource-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3>Creator Studio</h3>
+            <p>Powerful toolkit to build, test, and publish AI skills with zero infrastructure hassle.</p>
+            <a href="javascript:void(0)" class="resource-link" data-social="discord">Learn More →</a>
+          </div>
+
+          <div class="resource-card reveal reveal-delay-3">
+            <div class="resource-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Community Support</h3>
+            <p>Join our Discord to connect with other creators, get help, and share your creations.</p>
+            <a href="javascript:void(0)" class="resource-link" data-social="discord">Join Discord →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COMMUNITY ── -->
+    <section id="community" class="community-section">
+      <div class="container">
+        <div class="community-inner reveal">
+          <div class="community-content">
+            <p class="eyebrow">Join the Movement</p>
+            <h2>Be Part of the AI Creator Economy</h2>
+            <p>Connect with 2,400+ early adopters, share ideas, and help shape the future of open AI tools.</p>
+            <div class="community-links">
+              <a href="javascript:void(0)" class="community-card" data-social="discord">
+                <div class="community-card-icon" style="background:linear-gradient(135deg,#5865f2,#7289da);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:white;">
+                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Discord</strong>
+                  <span>Join our community server</span>
+                </div>
+              </a>
+              <a href="javascript:void(0)" class="community-card" data-social="github">
+                <div class="community-card-icon" style="background:linear-gradient(135deg,#333,#555);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:white;">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>GitHub</strong>
+                  <span>Open source contributions</span>
+                </div>
+              </a>
+              <a href="javascript:void(0)" class="community-card" data-social="twitter">
+                <div class="community-card-icon" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:white;">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>X (Twitter)</strong>
+                  <span>Follow for updates</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="community-visual">
+            <div class="community-stats-ring">
+              <div class="ring-stat">
+                <span class="ring-number" data-target="2400">0+</span>
+                <span class="ring-label">Early Adopters</span>
+              </div>
+              <div class="ring-stat">
+                <span class="ring-number" data-target="340">0+</span>
+                <span class="ring-label">Creators</span>
+              </div>
+              <div class="ring-stat">
+                <span class="ring-number" data-target="50">0+</span>
+                <span class="ring-label">AI Tools</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+
+        <div class="footer-section footer-brand">
+          <a href="javascript:void(0)" class="brand footer-brand-link" aria-label="Bravo.Ai" data-scroll="home">
+            <span class="brand-text">Bravo<span class="brand-sub">.Ai</span></span>
+          </a>
+          <p class="footer-desc">The most trusted open marketplace for AI agents and skills.</p>
+          <div class="social-links">
+            <a href="javascript:void(0)" class="btn-social" aria-label="X" data-social="twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="javascript:void(0)" class="btn-social" aria-label="GitHub" data-social="github">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="javascript:void(0)" class="btn-social" aria-label="Discord" data-social="discord">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" data-scroll="agents">Agents</a></li>
+            <li><a href="javascript:void(0)" data-scroll="skills">Skills</a></li>
+            <li><a href="javascript:void(0)" data-scroll="how-it-works">How It Works</a></li>
+            <li><a href="javascript:void(0)" data-scroll="pricing">Pricing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Community</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" data-social="discord">Discord</a></li>
+            <li><a href="javascript:void(0)" data-social="twitter">X</a></li>
+            <li><a href="javascript:void(0)" data-social="github">GitHub</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2026 Bravo AI &mdash; Building the open AI future.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WAITLIST MODAL ── -->
+  <div class="waitlist-modal" id="waitlistModal" role="dialog" aria-modal="true" aria-labelledby="waitlistTitle">
+    <div class="waitlist-modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+
+      <div class="modal-header">
+        <h2 id="waitlistTitle">Join the Waitlist</h2>
+        <p>Be among the first to access the AI marketplace</p>
+      </div>
+
+      <form class="waitlist-form" id="waitlistForm">
+        <div class="form-group">
+          <input type="text" id="waitlistName" name="name" class="form-input" placeholder="Your Name" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <input type="email" id="waitlistEmail" name="email" class="form-input" placeholder="Email Address" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <select id="waitlistInterest" name="interest" class="form-input" required>
+            <option value="" disabled selected>I'm interested in…</option>
+            <option value="creator">Publishing AI Agents / Skills</option>
+            <option value="user">Discovering AI Tools</option>
+            <option value="both">Both — I want it all</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Secure My Spot
+        </button>
+        <p class="form-note">🔒 No spam. Unsubscribe anytime.</p>
+      </form>
+
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3>You're on the list!</h3>
+        <p>We'll reach out as soon as access opens up. Stay tuned — it's going to be good.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COMING SOON / FEATURE INFO MODAL ── -->
+  <div class="waitlist-modal" id="comingSoonModal" role="dialog" aria-modal="true" aria-label="Feature Info">
+    <div class="waitlist-modal-content">
+      <button class="modal-close" id="comingSoonClose" aria-label="Close">&times;</button>
+
+      <div class="modal-header">
+        <h2>Building Something Great</h2>
+        <p>Our marketplace is under active development — here's what's coming</p>
+      </div>
+
+      <div class="feature-preview">
+        <div class="feature-preview-item">
+          <div class="feature-preview-icon" style="color:var(--cyan);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </div>
+          <div>
+            <strong>AI Agent Marketplace</strong>
+            <span>Discover, test, and deploy AI agents from trusted creators</span>
+          </div>
+        </div>
+        <div class="feature-preview-item">
+          <div class="feature-preview-icon" style="color:var(--violet);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Creator Studio</strong>
+            <span>Build and publish AI skills with our no-code toolkit</span>
+          </div>
+        </div>
+        <div class="feature-preview-item">
+          <div class="feature-preview-icon" style="color:#f59e0b;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Trust &amp; Verification</strong>
+            <span>Community ratings, verified creators, and quality assurance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-preview-cta">
+        <!-- <p>Want early access when we launch? Hit the button below to get started.</p> -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <!-- Vercel Analytics -->
+  <script defer src="https://va.vercel-scripts.com/v1/speed-insights/script.js"></script>
+</body>
+
+</html>

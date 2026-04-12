@@ -1,0 +1,9 @@
+# robots.txt — Bravo.Ai
+# https://bravo-ai.me
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.vercel/
+
+Sitemap: https://bravo-ai.me/sitemap.xml
