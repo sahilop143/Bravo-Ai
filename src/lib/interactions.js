@@ -1,7 +1,34 @@
+/**
+ * Interaction utilities for managing modals and UI behaviors
+ */
+
 let cleanupFns = [];
 
 function registerCleanup(fn) {
   cleanupFns.push(fn);
+}
+
+/**
+ * Centralized modal stack for managing multiple modals
+ * Ensures Escape key closes only the topmost modal
+ */
+const modalStack = [];
+
+/**
+ * Push a close function onto the modal stack
+ * @param {Function} closeFn - Function to close the modal
+ */
+export function pushModal(closeFn) {
+  modalStack.push(closeFn);
+}
+
+/**
+ * Pop a close function from the modal stack
+ * @param {Function} closeFn - Function to close the modal
+ */
+export function popModal(closeFn) {
+  const idx = modalStack.indexOf(closeFn);
+  if (idx !== -1) modalStack.splice(idx, 1);
 }
 
 function initHeaderScroll() {
@@ -92,8 +119,9 @@ function initTypingEffect() {
   const title = document.querySelector('.hero-title');
   if (!title) return;
 
-  const html = title.innerHTML;
-  const lines = html.split('<br>');
+  const rawHtml = title.innerHTML;
+  const normalizedHtml = rawHtml.replace(/<br\s*\/?>/gi, '\n');
+  const lines = normalizedHtml.split('\n').map((line) => line.replace(/<[^>]+>/g, '').trim()).filter(Boolean);
 
   if (lines.length < 2) {
     const text = title.textContent || '';
@@ -114,8 +142,8 @@ function initTypingEffect() {
     return;
   }
 
-  const line1 = lines[0].replace(/<[^>]+>/g, '');
-  const line2 = lines[1].replace(/<[^>]+>/g, '');
+  const line1 = lines[0];
+  const line2 = lines[1];
   title.innerHTML = '';
 
   const span1 = document.createElement('span');
@@ -158,26 +186,23 @@ function initCounters() {
 
         const el = entry.target;
         const raw = el.textContent?.trim() || '';
-        const match = raw.match(/^(\d+)(\D*)$/);
-        if (!match) return;
+        const target = parseInt(raw.replace(/\D/g, ''), 10);
+        if (isNaN(target)) return;
 
-        const target = parseInt(match[1], 10);
-        const suffix = match[2];
         let current = 0;
-        const duration = 1200;
-        const step = duration / target;
-        const increment = Math.max(1, Math.ceil(target / 60));
+        const duration = 2000;
+        const step = target / (duration / 16);
 
-        const tick = () => {
-          current = Math.min(current + increment, target);
-          el.textContent = `${current}${suffix}`;
-          if (current < target) {
-            window.setTimeout(tick, step);
+        const counter = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = `${target}+`;
+            clearInterval(counter);
+            observer.unobserve(el);
+          } else {
+            el.textContent = `${Math.floor(current)}+`;
           }
-        };
-
-        window.setTimeout(tick, 300);
-        observer.unobserve(el);
+        }, 16);
       });
     },
     { threshold: 0.5 }
@@ -188,28 +213,44 @@ function initCounters() {
 }
 
 function initCleanNavigation() {
-  const handleClick = (event) => {
-    const element = event.target.closest('a[href]');
-    if (!element) return;
-
-    const href = element.getAttribute('href');
-    if (!href) return;
-
-    if (href.startsWith('#')) {
-      event.preventDefault();
-      const targetId = href.replace('#', '');
-      const targetEl = document.getElementById(targetId);
-      window.history.replaceState({}, '', '/');
-      if (targetEl) {
-        window.setTimeout(() => {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
-        }, 50);
+  const navLinks = document.querySelectorAll('.primary-nav a, .mobile-nav a');
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href?.startsWith('#')) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          history.pushState(null, '', href);
+        }
       }
-    }
-  };
+    });
+  });
+}
 
-  document.addEventListener('click', handleClick, true);
-  registerCleanup(() => document.removeEventListener('click', handleClick, true));
+function initActiveNavHighlight() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.primary-nav a');
+  if (!sections.length || !navLinks.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            link.style.color = link.getAttribute('href') === `#${id}` ? 'var(--cyan)' : '';
+          });
+        }
+      });
+    },
+    { threshold: 0.45 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+  registerCleanup(() => observer.disconnect());
 }
 
 function initWaitlistButtonHandler() {
@@ -225,6 +266,9 @@ function initWaitlistButtonHandler() {
   registerCleanup(() => document.removeEventListener('click', handleClick));
 }
 
+/**
+ * Initialize global interaction handlers
+ */
 export function initInteractions() {
   cleanupInteractions();
   initHeaderScroll();
@@ -234,10 +278,25 @@ export function initInteractions() {
   initTypingEffect();
   initCounters();
   initCleanNavigation();
+  initActiveNavHighlight();
   initWaitlistButtonHandler();
+
+  // Centralized Escape key handler for modals
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape' && modalStack.length) {
+      modalStack[modalStack.length - 1]();
+    }
+  };
+
+  document.addEventListener('keydown', handleKeyDown);
+  registerCleanup(() => document.removeEventListener('keydown', handleKeyDown));
 }
 
+/**
+ * Cleanup global interaction handlers
+ */
 export function cleanupInteractions() {
   cleanupFns.forEach((fn) => fn());
   cleanupFns = [];
+  modalStack.length = 0;
 }

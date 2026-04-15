@@ -12,6 +12,12 @@
       ]
     }
   ],
+  "rewrites": [
+    {
+      "source": "/((?!api/|robots.txt|sitemap.xml|favicon.svg).*)",
+      "destination": "/index.html"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }

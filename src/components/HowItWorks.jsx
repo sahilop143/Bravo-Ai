@@ -1,5 +1,13 @@
 import React from 'react';
 
+/**
+ * @typedef {Object} Step
+ * @property {string} number - Step number (e.g., '01')
+ * @property {string} title - Step title
+ * @property {string} description - Step description
+ */
+
+/** @type {Step[]} */
 const steps = [
   {
     number: '01',
@@ -18,19 +26,22 @@ const steps = [
   },
 ];
 
+/**
+ * HowItWorks component - Displays step-by-step guide
+ */
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="how-it-works">
+    <section id="how-it-works" className="how-it-works" aria-labelledby="how-it-works-heading">
       <div className="container">
         <div className="showcase-header reveal">
           <p className="eyebrow">Simple Process</p>
-          <h2>Up and Running in Minutes</h2>
+          <h2 id="how-it-works-heading">Up and Running in Minutes</h2>
         </div>
 
         <div className="steps-grid">
           {steps.map((step, index) => (
             <article key={step.number} className={`step-item reveal reveal-delay-${index + 1}`}>
-              <div className="step-number">{step.number}</div>
+              <div className="step-number" aria-hidden="true">{step.number}</div>
               <h3>{step.title}</h3>
               <p>{step.description}</p>
             </article>
